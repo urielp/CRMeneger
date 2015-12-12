@@ -8,4 +8,11 @@ angular.module('userApp' ,[
     'mainCtrl',//our main controller
     'userCtrl',//user management controller
     'userService'//user services
-]);
+])
+    //application configuration to integrate token into requests
+    .config(function($httpProvider)
+    {
+        //attach our auth interceptor to the http request
+        //since we want to keep the token as long as the user using the srvices
+        $httpProvider.interceptors.push('AuthInterceptor');
+    });

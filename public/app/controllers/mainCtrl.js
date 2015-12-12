@@ -5,11 +5,12 @@ angular.module('mainCtrl' , [])
 
 .controller('mainController',function($rootScope,$location,Auth)
     {
+        console.log('######mainCtrl######');
         var vm=this;
 
         //get info of a person is logged in
         vm.loggedIn = Auth.isLoggedIn();
-
+        console.log('######'+vm.loggedIn+'######');
         //check to see if a user is logged in on every request
         $rootScope.$on('$routeChangeStart', function() {
             vm.loggedIn = Auth.isLoggedIn();
@@ -29,7 +30,7 @@ angular.module('mainCtrl' , [])
 
             Auth.login(vm.loginData.username,vm.loginData.password)
                 .success(function(data){
-                    console.log('1');
+
                     vm.processing=false;
                     //if user successfully logged in,he will be redirect to users page
                     if (data.success) {
